@@ -7,7 +7,10 @@ require('dotenv/config');
 const app = express();
 
 const filmsRoute = require('./routes/films');
+const authRoute = require('./routes/auth');
+
 app.use('/api/film', filmsRoute);
+app.use('/api/user', authRoute);
 
 mongoose.connect(process.env.DB_CONNECTOR);
 
