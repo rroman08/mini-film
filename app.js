@@ -6,6 +6,8 @@ require('dotenv/config');
 
 const app = express();
 
+app.use(bodyParser.json());
+
 const filmsRoute = require('./routes/films');
 const authRoute = require('./routes/auth');
 
