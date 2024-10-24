@@ -8,8 +8,12 @@ function auth(req, res, next) {
     }
 
     try {
-
+        const verfified = jsonwebtoken.verify(token, process.env.TOKEN_SECRET);
+        req.user = verfified;
+        next();
     } catch(err) {
-        return res.status(401).send({ message: 'Access denied' });
+        return res.status(401).send({ message: 'Invalid token' });
     }
 }
+
+module.exports = auth;
