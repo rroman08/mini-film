@@ -1,5 +1,6 @@
 
 const express = require('express');
+const jsonwebtoken = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -60,7 +61,9 @@ router.post('/login', async (req, res) => {
         return res.status(400).send({ message: "Invalid password"})
     }
 
-    res.send("SUCCESS")
+    // Generate an auth-token for user
+    const token = jsonwebtoken.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+    res.header('auth-token', token).send({ 'auth-token': token });
 });
 
 module.exports = router;
