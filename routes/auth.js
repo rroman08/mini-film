@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/User');
-const { registerValidation } = require('../validations/validation');
+const { registerValidation, loginValidation } = require('../validations/validation');
 
 router.post('/register', async (req, res) => {
     // Validation-1: to check user input
